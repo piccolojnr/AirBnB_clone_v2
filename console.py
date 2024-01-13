@@ -10,6 +10,7 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
+import models
 
 
 class HBNBCommand(cmd.Cmd):
@@ -155,9 +156,8 @@ class HBNBCommand(cmd.Cmd):
             kwargs[key] = value
 
         new_instance = HBNBCommand.classes[class_name](**kwargs)
-        storage.save()
+        new_instance.save()
         print(new_instance.id)
-        storage.save()
 
     def help_create(self):
         """Help information for the create method"""
@@ -239,14 +239,21 @@ class HBNBCommand(cmd.Cmd):
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
-            for k, v in storage._FileStorage__objects.items():
+            ins = models.all_classes[args]
+            items = models.storage.all(ins)
+            for k, v in items.items():
                 if k.split(".")[0] == args:
-                    print_list.append(str(v))
+                    print_list.append(
+                        "[{}] ({}) {}".format(k.split(".")[0], k.split(".")[1], v)
+                    )
         else:
-            for k, v in storage._FileStorage__objects.items():
-                print_list.append(str(v))
-
-        print(print_list)
+            items = models.storage.all()
+            for k, v in items.items():
+                print_list.append(
+                    "[{}] ({}) {}".format(k.split(".")[0], k.split(".")[1], v)
+                )
+        if print_list:
+            print(print_list)
 
     def help_all(self):
         """Help information for the all command"""
