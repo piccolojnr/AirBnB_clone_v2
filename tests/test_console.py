@@ -48,10 +48,10 @@ class TestConsole(unittest.TestCase):
         self.assertEqual(temp_out.getvalue(), "** class doesn't exist **\n")
         temp_out.close()
 
-        # temp_out = StringIO()
-        # sys.stdout = temp_out
-        # HBNBCommand().do_create("BaseModel")
-        # self.assertEqual(temp_out.getvalue(), "** class doesn't exist **\n")
+        temp_out = StringIO()
+        sys.stdout = temp_out
+        HBNBCommand().do_create("BaseModel")
+        self.assertEqual(temp_out.getvalue(), "** class doesn't exist **\n")
         temp_out.close()
         sys.stdout = sys.__stdout__
 

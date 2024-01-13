@@ -1,19 +1,32 @@
 #!/usr/bin/python3
 """ """
-from tests.test_models.test_base_model import test_basemodel
 from models.amenity import Amenity
+import unittest
 
 
-class test_Amenity(test_basemodel):
+class test_Amenity(unittest.TestCase):
     """ """
 
-    def __init__(self, *args, **kwargs):
-        """ """
-        super().__init__(*args, **kwargs)
-        self.name = "Amenity"
-        self.value = Amenity
+    @classmethod
+    def setUpClass(cls):
+        """
+            setup
+        """
+        cls.value = Amenity()
+        cls.value.name = "test"
+
+    @classmethod
+    def tearDownClass(cls):
+        """
+            tear down
+        """
+        del cls.value
+
 
     def test_name2(self):
         """ """
-        new = self.value()
+        new = self.value
         self.assertEqual(type(new.name), str)
+        
+if __name__ == "__main__":
+    unittest.main()
