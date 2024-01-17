@@ -24,6 +24,7 @@ all_tables = {
     "users": User,
     "places": Place,
     "reviews": Review,
+    "amenities": Amenity,
 }
 
 HBNB_TYPE_STORAGE = getenv("HBNB_TYPE_STORAGE")
