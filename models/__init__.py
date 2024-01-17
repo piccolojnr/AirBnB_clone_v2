@@ -23,6 +23,7 @@ all_tables = {
     "cities": City,
     "users": User,
     "places": Place,
+    "reviews": Review,
 }
 
 HBNB_TYPE_STORAGE = getenv("HBNB_TYPE_STORAGE")
