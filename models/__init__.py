@@ -18,10 +18,7 @@ all_classes = {
     "User": User,
     "BaseModel": BaseModel,
 }
-all_tables = {
-    "states": State,
-    "cities": City,
-}
+all_tables = {"states": State, "cities": City, "users": User}
 
 HBNB_TYPE_STORAGE = getenv("HBNB_TYPE_STORAGE")
 
