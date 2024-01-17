@@ -88,7 +88,6 @@ class HBNBCommand(cmd.Cmd):
                         _args = pline
                     else:
                         _args = pline.replace(",", "")
-                        # _args = _args.replace('\"', '')
             line = " ".join([_cmd, _cls, _id, _args])
 
         except Exception as mess:
@@ -242,15 +241,11 @@ class HBNBCommand(cmd.Cmd):
             items = models.storage.all(ins)
             for k, v in items.items():
                 if k.split(".")[0] == args:
-                    print_list.append(
-                        "[{}] ({}) {}".format(k.split(".")[0], k.split(".")[1], v)
-                    )
+                    print_list.append(str(v))
         else:
             items = models.storage.all()
             for k, v in items.items():
-                print_list.append(
-                    "[{}] ({}) {}".format(k.split(".")[0], k.split(".")[1], v)
-                )
+                print_list.append(str(v))
         if print_list:
             print(print_list)
 
