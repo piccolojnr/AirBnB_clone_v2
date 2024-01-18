@@ -5,6 +5,7 @@ from sqlalchemy import create_engine
 from models.base_model import Base, BaseModel
 from sqlalchemy.orm import sessionmaker, scoped_session
 import models
+from models import city, state, amenity, place, review
 
 
 HBNB_MYSQL_USER = os.getenv("HBNB_MYSQL_USER")
@@ -27,7 +28,8 @@ class DBStorage:
                 HBNB_MYSQL_PWD,
                 HBNB_MYSQL_HOST,
                 HBNB_MYSQL_DB,
-            )
+            ),
+            pool_pre_ping=True,
         )
         if os.getenv("HBNB_ENV") == "test":
             Base.metadata.drop_all(self.__engine)
